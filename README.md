@@ -6,7 +6,8 @@
 ## Installing
 
 ```shell
-composer require littlesqx/douban-book -vvv
+git clone https://github.com/Littlesqx/php-interview-copywriting-fixing.git && cd php-interview-copywriting-fixing 
+composer install
 ```
 
 

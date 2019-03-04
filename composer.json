@@ -1,0 +1,11 @@
+{
+    "require": {
+        "php": ">=7.1.0",
+        "jxlwqq/chinese-typesetting": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Littlesqx\\Helper\\": "helper/"
+        }
+    }
+}

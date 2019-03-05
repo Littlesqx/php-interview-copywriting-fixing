@@ -15,6 +15,9 @@ use Jxlwqq\ChineseTypesetting\ChineseTypesetting;
 
 class Func
 {
+
+    public static $objectPool = [];
+
     /**
      * 读取文件
      *
@@ -74,12 +77,18 @@ class Func
      */
     public static function fixChineseTyping($origin)
     {
-        $chineseTypesetting = new ChineseTypesetting();
+        if (!isset(self::$objectPool[ChineseTypesetting::class])) {
+            self::$objectPool[ChineseTypesetting::class] = new ChineseTypesetting();
+        }
+        /**
+         * @var $chineseTypesetting ChineseTypesetting
+         */
+        $chineseTypesetting = self::$objectPool[ChineseTypesetting::class];
         $fixed = $chineseTypesetting->insertSpace($origin);
-        $fixed = $chineseTypesetting->removeSpace($fixed);
+        // $fixed = $chineseTypesetting->removeSpace($fixed);
         $fixed = $chineseTypesetting->full2Half($fixed);
-        $fixed = $chineseTypesetting->fixPunctuation($fixed);
-        $fixed = $chineseTypesetting->properNoun($fixed);
+        // $fixed = $chineseTypesetting->fixPunctuation($fixed);
+        // $fixed = $chineseTypesetting->properNoun($fixed);
         return $fixed;
     }
 }
